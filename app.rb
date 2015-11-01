@@ -52,7 +52,7 @@ patch '/:name' do
     body "#{file_name}に#{@params[:body]}と保存しました\n"
   else
     status NOT_FOUND
-    body "#{file_name}は存在していません\n"
+    body "#{file_name}は存在しません\n"
   end
 end
 
