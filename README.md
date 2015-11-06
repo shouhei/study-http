@@ -5,7 +5,7 @@ webアプリケーションのURLやHTTPの意味合いを学ぶ為に作成さ�
 # 利用しているライブラリ
 
 * bundler
-* sinatora
+* sinatra
 
 # インストール
 
