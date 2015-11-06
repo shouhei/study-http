@@ -1,15 +1,18 @@
 # coding: utf-8
+
+# coding: utf-8
 require 'sinatra'
 
 OK = 200
 CREATED = 201
 NOT_FOUND = 404
 
-
+# curl http://localhost:4567/
 get '/' do
   Dir::entries(File.expand_path('.')).select{|file|file.match("txt$")}.to_s
 end
 
+# curl -d "name=memo" -d "body=hello world" http://localhost:4567
 post '/' do
   file_name = @params[:name] + ".txt"
   if !File.exist? file_name
@@ -22,6 +25,7 @@ post '/' do
   end
 end
 
+# curl http://localhost:4567/memo
 get '/:name' do
   file_name = @params[:name] + ".txt"
   if File.exist? file_name
@@ -33,6 +37,7 @@ get '/:name' do
   end
 end
 
+# curl -X PUT -d "body=hello world !!!" http://localhost:4567/memo
 put '/:name' do
   file_name = @params[:name] + ".txt"
   if File.exist? file_name
@@ -44,6 +49,7 @@ put '/:name' do
   body "#{file_name}に#{@params[:body]}と保存しました\n"
 end
 
+# curl -X PATCH -d "body=hello world !!!" http://localhost:4567/memo
 patch '/:name' do
   file_name = @params[:name] + ".txt"
   if File.exist? file_name
@@ -56,6 +62,7 @@ patch '/:name' do
   end
 end
 
+# curl -X DELETE http://localhost:4567/memo
 delete '/:name' do
   file_name = @params[:name] + ".txt"
   if File.exist? file_name
